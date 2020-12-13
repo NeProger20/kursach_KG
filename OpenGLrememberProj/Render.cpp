@@ -553,14 +553,14 @@ void initRender(OpenGL *ogl)
 		mostiTex.loadTextureFromFile("textures//mostiTex.bmp");
 		mostiTex.bindTexture();
 
-    //тело машины
-  // loadModel("models\\body.obj_m", &prob);
-  // tetxbTEx.loadTextureFromFile("textures//cartext.bmp");
-  // tetxbTEx.bindTexture();
+ //тело машины
+ loadModel("models\\body.obj_m", &prob);
+ tetxbTEx.loadTextureFromFile("textures//cartext.bmp");
+ tetxbTEx.bindTexture();
 
-   
-   //tetxbTEx2.loadTextureFromFile("textures//cartext2.bmp");
-  // tetxbTEx2.bindTexture();
+ 
+ tetxbTEx2.loadTextureFromFile("textures//cartext2.bmp");
+ tetxbTEx2.bindTexture();
 
 
 
