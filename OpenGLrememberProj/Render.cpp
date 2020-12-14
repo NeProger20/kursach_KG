@@ -326,10 +326,10 @@ void keyDownEvent(OpenGL *ogl, int key)
 	//	lightMode = !lightMode;
 	//}
 
-	if (OpenGL::isKeyPressed('T'))
-	{
-		textureMode = !textureMode;
-	}	   
+	//if (OpenGL::isKeyPressed('T'))
+	//{
+	//	textureMode = !textureMode;
+	//}	   
 
 	//if (OpenGL::isKeyPressed('R'))
 	//{
@@ -553,14 +553,14 @@ void initRender(OpenGL *ogl)
 		mostiTex.loadTextureFromFile("textures//mostiTex.bmp");
 		mostiTex.bindTexture();
 
- //тело машины
- loadModel("models\\body.obj_m", &prob);
- tetxbTEx.loadTextureFromFile("textures//cartext.bmp");
- tetxbTEx.bindTexture();
+//тело машины
+loadModel("models\\body.obj_m", &prob);
+tetxbTEx.loadTextureFromFile("textures//cartext.bmp");
+tetxbTEx.bindTexture();
 
- 
- tetxbTEx2.loadTextureFromFile("textures//cartext2.bmp");
- tetxbTEx2.bindTexture();
+
+tetxbTEx2.loadTextureFromFile("textures//cartext2.bmp");
+tetxbTEx2.bindTexture();
 
 
 
@@ -610,7 +610,7 @@ void initRender(OpenGL *ogl)
 
 	rec.setSize(300, 200);
 	rec.setPosition(10, ogl->getHeight() - 100-10);
-	rec.setText("T - вкл/выкл текстур\nF-свет из камеры\nG - двигать свет по горизонтали\nG+ЛКМ двигать свет по вертекали\nP-показать/скрыть машину\nS-остановить машину\nV-ускорить машину\nB-замедлить машину\nN-вернуть обычную скорость\nC-изменить текстуру машины",0,0,0);
+	rec.setText("F-свет из камеры\nG - двигать свет по горизонтали\nG+ЛКМ двигать свет по вертекали\nP-показать/скрыть машину\nS-остановить машину\nV-ускорить машину\nB-замедлить машину\nN-вернуть обычную скорость\nC-изменить текстуру машины",0,0,0);
 
 	
 }
@@ -629,7 +629,7 @@ double f(double p0, double p1, double p2, double p3, double t)// формула кривой 
 double t_max = 0;
 
 
-double Angle_Vectors(double B[])
+double Angle_Vectors(double B[])//поворочавает нашу модель(считается угол поворота)
 
 {
 	double A[] = { 1,0 };
@@ -709,8 +709,9 @@ void Bez3()
 	 angle = Angle_Vectors(vector_new);
 	angle = angle * 180 / PI;
 
-	glTranslated(P_new[0], P_new[1], P_new[2]);
-	glRotated(angle, 0, 0, 1);
+	glTranslated(P_new[0], P_new[1], P_new[2]);//двигает объект по кривой
+	
+	glRotated(angle, 0, 0, 1);//поворот машины
 
 
 	
@@ -987,23 +988,23 @@ void Render(OpenGL *ogl)
 	//Шаг 2 - передаем ей значение
 	glUniform3fARB(location, light.pos.X(), light.pos.Y(), light.pos.Z());
 
-	location = glGetUniformLocationARB(s[2].program, "Ia");
+	location = glGetUniformLocationARB(s[2].program, "Ia");//фоновое освещение
 	glUniform3fARB(location, 0.2, 0.2, 0.2);
 
-	location = glGetUniformLocationARB(s[2].program, "Id");
+	location = glGetUniformLocationARB(s[2].program, "Id");//цвет освещения
 	glUniform3fARB(location, 1.0, 1.0, 1.0);
 
-	location = glGetUniformLocationARB(s[2].program, "Is");
+	location = glGetUniformLocationARB(s[2].program, "Is");//блик
 	glUniform3fARB(location, .7, .7, .7);
 
 
-	location = glGetUniformLocationARB(s[2].program, "ma");
+	location = glGetUniformLocationARB(s[2].program, "ma");//фоновое освещение
 	glUniform3fARB(location, 0.2, 0.2, 0.1);
 
-	location = glGetUniformLocationARB(s[2].program, "md");
+	location = glGetUniformLocationARB(s[2].program, "md");//цвет освещения
 	glUniform3fARB(location, 0.5, 0.5, 0.5);
 
-	location = glGetUniformLocationARB(s[2].program, "ms");
+	location = glGetUniformLocationARB(s[2].program, "ms");//блик
 	glUniform4fARB(location, 0.9, 0.8, 0.3, 25.6);
 
 	location = glGetUniformLocationARB(s[2].program, "camera");
@@ -1028,7 +1029,7 @@ void Render(OpenGL *ogl)
 
 	//location = glGetUniformLocationARB(s[2].program, "Is");
 	//glUniform3fARB(location, 1, 0.05, 0.05);
-
+	
 	glPushMatrix();
 	roadYTex.bindTexture();
 	roadY.DrawObj();
